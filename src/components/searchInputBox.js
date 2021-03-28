@@ -49,9 +49,8 @@ const SearchInput = ({selectedStock, seeStockDetail}) => {
             value={searchKeyWord} 
             placeholder='STOCK SYMBOL HERE'
             onChange={handleSearchStock} 
-            onBlur={() => {setResultList(null)}}
           />
-          <button className='search-glass-btn' onClick={() => seeStockDetail(searchKeyWord)}>
+          <button aria-label='Search' className='search-glass-btn' onClick={() => {seeStockDetail(searchKeyWord); setResultList(null)}}>
             <SearchIcon classes={{root: 'search-glass'}}/>
           </button>
         </div>

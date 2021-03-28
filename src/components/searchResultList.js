@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 const SearchResultList = ({suggestionList, seeStockDetail, typedStock}) => {
   const [list, setList] = useState(suggestionList);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setList(suggestionList);
@@ -15,8 +14,7 @@ const SearchResultList = ({suggestionList, seeStockDetail, typedStock}) => {
   return (
     <div className='stock-list-container'>
       <ul 
-        className='stock-list' 
-        onBlur={() => setList(null)}
+        className='stock-list'
       >
         {
           list && list.map(item => 
@@ -28,9 +26,6 @@ const SearchResultList = ({suggestionList, seeStockDetail, typedStock}) => {
           )
         }
       </ul>
-      {/* <div className='stock-search-btn-container'>
-        <button onClick={() => checkStockDetail(typedStock)}>Search</button>
-      </div> */}
     </div>
   )
 }

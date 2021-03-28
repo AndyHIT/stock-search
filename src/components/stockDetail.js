@@ -27,7 +27,7 @@ const StockDetail = ({stockSymbol}) => {
   }, [stockSymbol, stockDetail, stock]);
   
   return (
-    stockDetail && (
+    (stockDetail?.hasOwnProperty('Description')) ? (
       <div className='stock-detail-container'>
         <div>{stockSymbol.toUpperCase()} ({stockDetail.Exchange})</div>
         <div>{stockDetail.Sector} | {stockDetail.Industry} | {stockDetail.Country}</div>
@@ -46,6 +46,9 @@ const StockDetail = ({stockSymbol}) => {
         </div>
       </div>
     )
+    : (stockSymbol && (
+      <p className='errorTxt'>This is awkward... Please change a search keyword or try again later.</p>
+    ))
   )
 }
 
