@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import './App.scss';
+import SearchInput from './components/searchInputBox.js';
+import StockDetail from './components/stockDetail';
 
-function App() {
+const API_KEY = '3YROQALYDS8I7790';
+const API_BASE_URL = 'https://www.alphavantage.co/query';
+
+const App = () => {
+  const [stock, setStock] = useState('');
+  const [searchedStock, setSearchedStock] = useState('');
+
+  useEffect(() => {
+    seeStockDetail(stock);
+  }, [stock]);
+
+  const seeStockDetail = (symbol) => {
+    setStock(symbol);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchInput seeStockDetail={seeStockDetail} />
+      <StockDetail stockSymbol={stock} />
     </div>
   );
 }
