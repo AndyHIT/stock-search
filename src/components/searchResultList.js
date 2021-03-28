@@ -1,18 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
-const SearchResultList = ({suggestionList, seeStockDetail, typedStock}) => {
+const SearchResultList = ({suggestionList, seeStockDetail, typedStock, selectStock}) => {
   const [list, setList] = useState(suggestionList);
+  const node = useRef();
 
   useEffect(() => {
     setList(suggestionList);
   }, [suggestionList])
 
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, []);
+
+  const handleClick = e => {
+    if (node.current.contains(e.target)) {
+      return;
+    }
+    setList(null);
+  };
+
   const checkStockDetail = (symbol) => {
     setList(null);
     seeStockDetail(symbol);
+    selectStock(symbol);
   }
+
   return (
-    <div className='stock-list-container'>
+    <div ref={node} className='stock-list-container'>
       <ul 
         className='stock-list'
       >

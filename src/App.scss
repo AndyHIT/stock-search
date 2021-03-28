@@ -2,13 +2,8 @@
   box-shadow: $x-axis $y-axis $spread $blur $color;
 }
 
-.App {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  position: relative;
-  
-  .search-box-list-container {
+.App {  
+  .search-box-form-container {
     position: relative;
     width: 100%;
     margin: 0 auto;
@@ -92,16 +87,82 @@
   }
 
   .stock-detail-container {
-    margin: 10px;
+    max-width: 1425px;
+    min-width: 1024px;
+    padding: 0 20px;
+    width: 100%;
+    margin: 10px auto;
+    
+    .stock-detail-basic {
+      margin-top: 10px;
+      text-align: center;
+    }
+    
+    p {
+      text-align: justify;
+      font-size: 14px;
+    }
 
     .stock-detail-table {
+      font-size: 14px;
       width: 300px;
       margin: 0 auto;
+      border-color: #ccc;
+      border-style: solid;
+      border-width: 0 0 1px 1px;
+      border-spacing: 0;
+
+      td {
+        text-align: left;
+        border-color: #ccc;
+        border-style: solid;
+        border-width: 1px 1px 0 0;
+        padding-left: 5px;
+        &.colspan-2 {
+          text-align: center;
+        }
+      }
     }
   }
 
   .errorTxt {
     color: #ff0000;
     font-size: 14px;
+    max-width: 1425px;
+    min-width: 1024px;
+    padding: 0 20px;
+    width: 100%;
+    margin: 10px auto;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .App {
+    .search-box-form-container {
+      .search-box-container {
+        .search-input-container {
+          width: calc(100% - 20px);
+          margin: 0 10px;
+          .search-input {
+            width: calc(100% - 30px);;
+          }
+        }
+      }
+      .stock-list-container {
+        .stock-list {
+          width: calc(100% - 20px);
+        }
+      }
+    }
+    .stock-detail-container {
+      min-width: calc(100% - 40px);
+      padding: 0;
+
+      p {
+        max-width: calc(100% - 20px);
+        padding: 0 10px;
+      }
+    }
   }
 }

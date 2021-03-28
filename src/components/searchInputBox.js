@@ -7,7 +7,7 @@ const API_KEY = '3YROQALYDS8I7790';
 const API_BASE_URL = 'https://www.alphavantage.co/query';
 
 const SearchInput = ({selectedStock, seeStockDetail}) => {
-  const [searchKeyWord, setSearchKeyWord] = useState('');
+  const [searchKeyWord, setSearchKeyWord] = useState(selectedStock);
   const [resultList, setResultList] = useState([]);
 
   useEffect(() => {
@@ -39,8 +39,14 @@ const SearchInput = ({selectedStock, seeStockDetail}) => {
     setSearchKeyWord(stockSymbolValue);
   }
 
+  const handleSearchSubmission = (e) => {
+    e.preventDefault();
+    seeStockDetail(searchKeyWord); 
+    setResultList(null);
+  }
+
   return (
-    <div className='search-box-list-container'>
+    <form className='search-box-form-container' onSubmit={(e) => handleSearchSubmission(e)}>
       <div className='search-box-container'>
         <div className='search-input-container'>
           <input 
@@ -49,6 +55,8 @@ const SearchInput = ({selectedStock, seeStockDetail}) => {
             value={searchKeyWord} 
             placeholder='STOCK SYMBOL HERE'
             onChange={handleSearchStock} 
+            pattern='[\w.]+'
+            title='Please only use letters or numbers'
           />
           <button aria-label='Search' className='search-glass-btn' onClick={() => {seeStockDetail(searchKeyWord); setResultList(null)}}>
             <SearchIcon classes={{root: 'search-glass'}}/>
@@ -59,8 +67,9 @@ const SearchInput = ({selectedStock, seeStockDetail}) => {
         suggestionList={resultList} 
         seeStockDetail={seeStockDetail}
         typedStock={searchKeyWord}
+        selectStock={setSearchKeyWord}
       />
-    </div>
+    </form>
   )
 }
 

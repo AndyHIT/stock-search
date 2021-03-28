@@ -29,25 +29,30 @@ const StockDetail = ({stockSymbol}) => {
   return (
     (stockDetail?.hasOwnProperty('Description')) ? (
       <div className='stock-detail-container'>
-        <div>{stockSymbol.toUpperCase()} ({stockDetail.Exchange})</div>
-        <div>{stockDetail.Sector} | {stockDetail.Industry} | {stockDetail.Country}</div>
+        <div className='stock-detail-basic'>{stockSymbol.toUpperCase()} ({stockDetail.Exchange})</div>
+        <div className='stock-detail-basic'>{stockDetail.Sector} | {stockDetail.Industry} | {stockDetail.Country}</div>
         <p>{stockDetail && stockDetail.Description}</p>
-        <div className='stock-detail-table'>
-          <label>Key stats</label>
-          <div>Market Cap: {stockDetail.MarketCapitalization}</div>
-          <div>EBITDA: {stockDetail.EBITDA}</div>
-          <div>P/E: {stockDetail.PERatio}</div>
-          <div>EPS: {stockDetail.EPS}</div>
-          <div>Dividend: {stockDetail.DividendPerShare}</div>
-          <div>Shs Outstand: {stockDetail.SharesOutstanding}</div>
-          <div>Shs Float: {stockDetail.SharesFloat}</div>
-          <div>52 Wk High: {stockDetail['52WeekHigh']}</div>
-          <div>52 Wk Low: {stockDetail['52WeekLow']}</div>
-        </div>
+        <table className='stock-detail-table'>
+          <tbody>
+            <tr><td className='colSpan-2' colSpan={2}>Key stats</td></tr>
+            <tr><td>Market Cap: </td><td>{stockDetail.MarketCapitalization}</td></tr>
+            <tr><td>EBITDA: </td><td>{stockDetail.EBITDA}</td></tr>
+            <tr><td>P/E: </td><td>{stockDetail.PERatio}</td></tr>
+            <tr><td>EPS: </td><td>{stockDetail.EPS}</td></tr>
+            <tr><td>dividend: </td><td>{stockDetail.DividendPerShare}</td></tr>
+            <tr><td>Shs Outstand: </td><td>{stockDetail.SharesOutstanding}</td></tr>
+            <tr><td>Shs Float: </td><td>{stockDetail.SharesFloat}</td></tr>
+            <tr><td>52 Wk High: </td><td>{stockDetail['52WeekHigh']}</td></tr>
+            <tr><td>52 Wk Low: </td><td>{stockDetail['52WeekLow']}</td></tr>
+          </tbody>
+        </table>
       </div>
     )
     : (stockSymbol && (
-      <p className='errorTxt'>This is awkward... Please change a search keyword or try again later.</p>
+      <p className='errorTxt'>
+        <span>This is awkward...&#128517;</span> <br />
+        We don't have any data on the stock you selected. Please try searching something else or come back later.
+      </p>
     ))
   )
 }

@@ -15,7 +15,7 @@ const App = () => {
   }
   return (
     <div className="App">
-      <SearchInput seeStockDetail={seeStockDetail} />
+      <SearchInput seeStockDetail={seeStockDetail} selectedStock={stock} />
       <StockDetail stockSymbol={stock} />
     </div>
   );
