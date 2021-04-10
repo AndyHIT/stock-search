@@ -11,11 +11,17 @@ Acceptance Criteria:
 ● Based on the user's input, the user gets a list of stock symbols and company
 names in a dropdown below the input field while typing in the search field (i.e.
 AutoComplete)
+
 ● User can click any of the items in list to get a detailed view of the selected stock
+
 ● User can click ‘search’ button to get a detailed view of the stock based on their
 input
+
 ● Search input is always present on the page
+
 ● The detailed view can hold as much or as little data as you would like to provide
 using the available API
+
 ● Form handles errors and shows descriptive error messages to the user
+
 ● Compiles CSS from SCSS
